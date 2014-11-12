@@ -105,14 +105,13 @@
     
     CGPoint visiblePoint = CGPointMake(0, cellRect.origin.y + CGRectGetHeight(self.currentTextField.frame) + CGRectGetMaxY(self.currentTextField.frame)); //offset cell location with textfield location
     
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, scrollPoint.y, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
     
     //scroll if obscured by keyboard
     if (!CGRectContainsPoint(visibleArea, visiblePoint) ) {
         scrollPoint = CGPointMake(0.0, visiblePoint.y - keyboardRect.origin.y);
-        UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, scrollPoint.y, 0.0);
-        
-        self.scrollView.contentInset = contentInsets;
-        self.scrollView.scrollIndicatorInsets = contentInsets;
         [self.scrollView setContentOffset:scrollPoint animated:YES];
     }
     
